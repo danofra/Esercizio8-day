@@ -1,13 +1,10 @@
 import java.util.Random;
 import java.util.List;
-import java.util.ArrayList;
-
-import static javax.management.Query.and;
 
 public class Product {
     private final Long id;
-    private String name;
-    private String category;
+    private final String name;
+    private final String category;
     private double price;
 
     Random random = new Random();
