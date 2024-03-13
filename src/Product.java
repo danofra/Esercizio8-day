@@ -4,7 +4,7 @@ import java.util.List;
 public class Product {
     private final Long id;
     private final String name;
-    private final String category;
+    public String category;
     private double price;
 
     Random random = new Random();

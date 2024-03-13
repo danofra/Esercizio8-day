@@ -2,8 +2,7 @@
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
-
-import static entities.Status.NEW;
+import static entities.Status.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,25 +22,25 @@ public class Main {
 
         Customers c1 = new Customers("Marco", 1);
         Customers c2 = new Customers("Paolo", 2);
+        Customers c3 = new Customers("Giorgio", 3);
+        Customers c4 = new Customers("Luca", 4);
 
         LocalDate dateOrder = LocalDate.now();
         Order o1 = new Order(NEW, dateOrder,  products, c1);
-        Order o2 = new Order(NEW, dateOrder,  products, c2);
+        Order o2 = new Order(IN_PROGRESS, dateOrder,  products, c2);
+        Order o3 = new Order(DELIVERED, dateOrder,  products, c3);
+        Order o4 = new Order(CANCELED, dateOrder,  products, c4);
 
-        o1.getProducts().forEach(product -> {
-            if(product.getCategory().equals("Baby")) {
-                System.out.println("---------------------------------------------------------------");
-                System.out.println("Prodotti ricercati per categoria Baby: " + "\n");
-                System.out.println(product.toString());
-            }
-        });
+        List<Order> orders = new ArrayList<>(List.of(o1, o2, o3, o4));
+        Order.sameCategory(orders);
+    System.out.println("Ordini ricevuti per categoria Baby: " + "\n" + orders);
 
         o2.getProducts().forEach(product -> {
             if(product.getCategory().equals("Boys")) {
                 product.setPrice(product.getPrice() - (product.getPrice() * 10 / 100));
                 System.out.println("---------------------------------------------------------------");
                 System.out.println("Prodotti ricercati per categoria Boys: " + "\n");
-                System.out.println(product.toString());
+                System.out.println(product);
             }
         });
 }
